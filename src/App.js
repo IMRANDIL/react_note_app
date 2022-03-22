@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import NoteList from "./components/NoteList";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid'
 import Search from "./components/Search";
+import Header from "./components/Header";
 
 
 
@@ -39,7 +40,9 @@ function App() {
 
   ]);
 
-  const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState('');
+
+  const [isdarkmode, setIsdarkmode] = useState(false)
 
 
 
@@ -76,6 +79,36 @@ function App() {
 
 
 
+  useEffect(() => {
+
+
+    const savedNotes = JSON.parse(localStorage.getItem('notes'));
+
+    if (savedNotes) {
+      setNotes(savedNotes)
+    }
+
+
+
+  }, [])
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+
+    localStorage.setItem('notes', JSON.stringify(notes))
+
+
+
+  }, [notes])
+
 
 
 
@@ -84,10 +117,16 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <div className="container">
-        <Search handleSearch={setSearchText} />
-        <NoteList notes={notes.filter((note) => note.text.toLowerCase().includes(searchText))} handleAddNote={addNote} deleteNote={deleteNote} />
+      <div className={`${isdarkmode && 'dark-mode'}`}>
+
+        <div className="container">
+          <Header handleDarkMode={setIsdarkmode} />
+          <Search handleSearch={setSearchText} />
+          <NoteList notes={notes.filter((note) => note.text.toLowerCase().includes(searchText))} handleAddNote={addNote} deleteNote={deleteNote} />
+        </div>
+
       </div>
+
     </>
   );
 }

@@ -50,6 +50,7 @@ color: red;
   margin: 0 auto;
   padding-right: 15px;
   padding-left: 15px;
+  min-height: 100vh;
 }
 
 
@@ -92,12 +93,29 @@ textarea:focus{
 }
 
 
+.dark-mode{
+  background-color: black;
+}
+
+.dark-mode h1{
+  color: whitesmoke;
+}
+
+
 .search input{
   border: none;
   background-color: rgb(233,233,233);
   width: 100%;
+  padding: 10px 0;
+  text-align: center;
 }
 
 .search input:focus{
   outline: none;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
