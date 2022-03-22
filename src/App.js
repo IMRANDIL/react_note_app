@@ -4,6 +4,7 @@ import NoteList from "./components/NoteList";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid'
+import Search from "./components/Search";
 
 
 
@@ -61,11 +62,24 @@ function App() {
 
 
 
+
+
+  const deleteNote = (id) => {
+
+    const newNote = notes.filter((note) => note.id !== id);
+    setNotes(newNote)
+
+  }
+
+
+
+
   return (
     <>
       <ToastContainer />
       <div className="container">
-        <NoteList notes={notes} handleAddNote={addNote} />
+        <Search />
+        <NoteList notes={notes} handleAddNote={addNote} deleteNote={deleteNote} />
       </div>
     </>
   );

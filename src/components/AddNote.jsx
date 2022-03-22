@@ -10,12 +10,17 @@ import { toast } from 'react-toastify'
 
 const AddNote = ({ handleAddNote }) => {
 
+    const characterLimit = 200;
+
     const [noteText, setNoteText] = useState('')
 
 
 
     const handleChange = (e) => {
-        setNoteText(e.target.value)
+        if (characterLimit - e.target.value.length >= 0) {
+            setNoteText(e.target.value)
+        }
+
     }
 
 
@@ -24,7 +29,7 @@ const AddNote = ({ handleAddNote }) => {
             handleAddNote(noteText);
             setNoteText('')
         } else {
-            toast.error(`Please Type Some Note!`)
+            toast.error(`Please Type A Note!`)
         }
 
 
@@ -36,7 +41,7 @@ const AddNote = ({ handleAddNote }) => {
         <div className='note new'>
             <textarea cols="10" rows="8" placeholder='Type to add a note...' value={noteText} onChange={handleChange} />
             <div className="note-footer">
-                <small>200 Remaining</small>
+                <small>{characterLimit - noteText.length} Remaining</small>
                 <button className='save' onClick={handlesave}>Save</button>
             </div>
         </div>

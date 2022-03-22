@@ -16,13 +16,18 @@ code {
 
 .note{
   background:#fef68a;
- 
+ white-space: pre-wrap;
   border-radius: 10px;
   padding: 1rem;
   min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.delete-icon:hover{
+cursor: pointer;
+color: red;
 }
 
 
@@ -73,4 +78,25 @@ textarea:focus{
 
 .save:hover{
   background-color: #ededed;
+}
+
+
+
+.search{
+  display: flex;
+  align-items: center;
+  background-color: rgb(233,233,233);
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1.5em;
+}
+
+
+.search input{
+  border: none;
+  background-color: rgb(233,233,233);
+}
+
+.search input:focus{
+  outline: none;
 }
