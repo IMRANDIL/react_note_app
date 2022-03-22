@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import NoteList from "./components/NoteList";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid'
 
 
@@ -40,10 +41,33 @@ function App() {
 
 
 
+
+  const addNote = (text) => {
+
+    const date = new Date();
+    const newNote = {
+      id: nanoid(),
+      text: text,
+      date: date.toLocaleDateString()
+    }
+
+    const newNotes = [...notes, newNote];
+    setNotes(newNotes)
+
+
+
+  }
+
+
+
+
   return (
-    <div className="container">
-      <NoteList notes={notes} />
-    </div>
+    <>
+      <ToastContainer />
+      <div className="container">
+        <NoteList notes={notes} handleAddNote={addNote} />
+      </div>
+    </>
   );
 }
 
