@@ -37,7 +37,9 @@ function App() {
 
 
 
-  ])
+  ]);
+
+  const [searchText, setSearchText] = useState('')
 
 
 
@@ -74,12 +76,17 @@ function App() {
 
 
 
+
+
+
+
+
   return (
     <>
       <ToastContainer />
       <div className="container">
-        <Search />
-        <NoteList notes={notes} handleAddNote={addNote} deleteNote={deleteNote} />
+        <Search handleSearch={setSearchText} />
+        <NoteList notes={notes.filter((note) => note.text.toLowerCase().includes(searchText))} handleAddNote={addNote} deleteNote={deleteNote} />
       </div>
     </>
   );
