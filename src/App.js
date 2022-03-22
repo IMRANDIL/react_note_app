@@ -1,9 +1,10 @@
+import NoteList from "./components/NoteList";
 
 
 function App() {
   return (
-    <div className="App">
-      hey ali
+    <div className="container">
+      <NoteList />
     </div>
   );
 }
